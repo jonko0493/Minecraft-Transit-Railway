@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BiConsumer;
 
 public class MTR implements IPacket {
@@ -484,21 +485,25 @@ public class MTR implements IPacket {
 				Webserver.getDataCache = railwayData -> railwayData == null ? null : railwayData.dataCache;
 				Webserver.start(minecraftServer.getServerDirectory().toPath().resolve("config").resolve("mtr_webserver_port.txt"));
 
-				// BlueMap markers do not persist, so we need to make sure we add them every time the server loads
-				BlueMapAPI.onEnable(api -> {
-					minecraftServer.getAllLevels().forEach(serverWorld -> {
-						final BlueMapMap map = api.getMaps().stream().filter(map1 -> serverWorld.dimension().location().getPath().contains(map1.getId())).findFirst().orElse(null);
-						if (map == null) {
-							return;
-						}
-						// First we add the icons to its asset store
-						UpdateBlueMap.setUpIcons(map, serverWorld, IUpdateWebMap.STATION_ICON_KEY, IUpdateWebMap.STATION_ICON_PATH);
-						UpdateBlueMap.setUpIcons(map, serverWorld, IUpdateWebMap.DEPOT_ICON_KEY, IUpdateWebMap.DEPOT_ICON_PATH);
+				try {
+					// BlueMap markers do not persist, so we need to make sure we add them every time the server loads
+					BlueMapAPI.onEnable(api -> {
+						minecraftServer.getAllLevels().forEach(serverWorld -> {
+							final BlueMapMap map = api.getMaps().stream().filter(map1 -> serverWorld.dimension().location().getPath().contains(map1.getId())).findFirst().orElse(null);
+							if (map == null) {
+								return;
+							}
+							// First we add the icons to its asset store
+							UpdateBlueMap.setUpIcons(map, serverWorld, IUpdateWebMap.STATION_ICON_KEY, IUpdateWebMap.STATION_ICON_PATH);
+							UpdateBlueMap.setUpIcons(map, serverWorld, IUpdateWebMap.DEPOT_ICON_KEY, IUpdateWebMap.DEPOT_ICON_PATH);
 
-						// Then we add the markers
-						UpdateBlueMap.updateBlueMap(serverWorld, RailwayData.getInstance(serverWorld));
+							// Then we add the markers
+							UpdateBlueMap.updateBlueMap(serverWorld, RailwayData.getInstance(serverWorld));
+						});
 					});
-				});
+				} catch (NoClassDefFoundError | IllegalStateException ignore) {
+					System.out.println("BlueMap is not loaded");
+				}
 			});
 			Registry.registerServerStoppingEvent(minecraftServer -> Webserver.stop());
 		}
