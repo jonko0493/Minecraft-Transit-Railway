@@ -51,7 +51,8 @@ subprojects {
 		minecraft "com.mojang:minecraft:${minecraft_version}"
 		mappings loom.officialMojangMappings()
 		implementation name: "Dynmap-3.2.1"
-		implementation name: "BlueMapAPI-2.1.1"
+		implementation "com.github.BlueMap-Minecraft:BlueMapAPI:v2.5.1"
+		implementation "net.kyori:adventure-api:+"
 		implementation "xyz.jpenilla:squaremap-api:+"
 		implementation "org.eclipse.jetty:jetty-http:9.+"
 		implementation "org.eclipse.jetty:jetty-io:9.+"
