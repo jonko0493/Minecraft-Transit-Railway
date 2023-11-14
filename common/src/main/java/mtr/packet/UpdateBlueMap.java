@@ -85,11 +85,12 @@ public class UpdateBlueMap implements IGui, IUpdateWebMap {
 					.build();
 			markerSetPOIs.getMarkers().put("1_" + worldId + id, markerPOI);
 			final ShapeMarker markerArea = ShapeMarker.builder()
-					.shape(Shape.createRect(areaCorner1X, areaCorner1Z, areaCorner2X, areaCorner2Z), areaY)
+					.shape(Shape.createRect(areaCorner1X, areaCorner1Z, areaCorner2X, areaCorner2Z), 255)
 					.centerPosition()
 					.label(name)
 					.fillColor(new Color(color.getRGB() & RGB_WHITE, 0.5F))
 					.lineColor(new Color(color.darker().getRGB()))
+					.depthTestEnabled(false)
 					.build();
 			markerSetAreas.getMarkers().put("2_" + worldId + id, markerArea);
 		});
