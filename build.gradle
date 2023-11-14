@@ -55,7 +55,7 @@ subprojects {
 			parchment("org.parchmentmc.data:parchment-${is_1_19_3 ? "1.19.3" : minecraft_version}:${parchment_version}@zip")
 		}
 		implementation name: "Dynmap-3.2.1"
-		implementation name: "BlueMapAPI-2.1.1"
+		implementation "com.github.BlueMap-Minecraft:BlueMapAPI:v2.5.1"
 		implementation "xyz.jpenilla:squaremap-api:${rootProject.squaremap_version}"
 		implementation "org.eclipse.jetty:jetty-http:${rootProject.jetty_version}"
 		implementation "org.eclipse.jetty:jetty-io:${rootProject.jetty_version}"
