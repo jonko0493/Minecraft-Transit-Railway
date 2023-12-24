@@ -65,6 +65,7 @@ public class MaterialColor {
 	public static final MaterialColor WARPED_STEM = new MaterialColor(56, 3837580);
 	public static final MaterialColor WARPED_HYPHAE = new MaterialColor(57, 5647422);
 	public static final MaterialColor WARPED_WART_BLOCK = new MaterialColor(58, 1356933);
+	public static final MaterialColor NETHERITE = new MaterialColor(59, 6563623);
 	public final int col;
 	public final int id;
 

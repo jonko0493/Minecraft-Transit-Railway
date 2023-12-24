@@ -1,0 +1,15 @@
+{
+	"base": {
+		"item": "mtr:rail_connector_300"
+	},
+	"addition": {
+		"item": "minecraft:netherite_ingot"
+	},
+	"result": {
+		"item": "mtr:rail_connector_500"
+	},
+	"type": "minecraft:smithing_transform",
+	"template": {
+		"item": "minecraft:netherite_upgrade_smithing_template"
+	}
+}
