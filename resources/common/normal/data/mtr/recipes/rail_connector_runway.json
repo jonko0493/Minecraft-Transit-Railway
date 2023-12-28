@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"FRF",
+		"FIF",
+		" R "
+	],
+	"key": {
+		"R": {
+			"tag": "minecraft:rails"
+		},
+		"I": {
+			"tag": "c:iron_ingots"
+		},
+		"F": {
+			"item": "minecraft:feather"
+		}
+	},
+	"result": {
+		"item": "mtr:rail_connector_runway"
+	}
+}
